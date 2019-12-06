@@ -39,16 +39,18 @@ class DataManager: NSObject  {
         } catch {
             let selectedInterval = Defaults.selectedInterval
             let interval = Defaults.interval[selectedInterval]
+            let dailyGoal = Defaults.dailyGoal
             
             self.saveConfig(
                 intakeInterval: interval,
-                selectedInterval: Int64(selectedInterval)
+                selectedInterval: Int64(selectedInterval),
+                dailyGoal: Int64(dailyGoal)
             )
             print(error)
         }
     }
     
-    func saveConfig(intakeInterval: Double, selectedInterval: Int64) {
+    func saveConfig(intakeInterval: Double, selectedInterval: Int64, dailyGoal: Int64) {
         guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
             return
         }
@@ -64,6 +66,7 @@ class DataManager: NSObject  {
         let timestamp = NSDate().timeIntervalSince1970
         
         newConfig.setValue(timestamp, forKey: "created")
+        newConfig.setValue(dailyGoal, forKey: "dailyGoal")
         newConfig.setValue(intakeInterval, forKey: "intakeInterval")
         newConfig.setValue(selectedInterval, forKey: "selectedInterval")
         
@@ -73,6 +76,7 @@ class DataManager: NSObject  {
             print(error)
         }
         
+        appDelegate.intakeManager.dailyGoal = Int(dailyGoal)
         appDelegate.intakeManager.intakeInterval = intakeInterval
         appDelegate.intakeManager.selectedInterval = Int(selectedInterval)
 
@@ -99,6 +103,7 @@ class DataManager: NSObject  {
             }
             
             let config = results[0]
+            appDelegate.intakeManager.dailyGoal = config.value(forKey: "dailyGoal") as! Int
             appDelegate.intakeManager.intakeInterval = config.value(forKey: "intakeInterval") as! Double
             appDelegate.intakeManager.selectedInterval = config.value(forKey: "selectedInterval") as! Int
             
@@ -131,6 +136,13 @@ class DataManager: NSObject  {
         
         appDelegate.intakeManager.intakeAmount += 1
         appDelegate.intakeManager.overallIntakeAmount += 1
+        
+        if (
+            appDelegate.intakeManager.dailyGoal > 0
+            && appDelegate.intakeManager.intakeAmount == appDelegate.intakeManager.dailyGoal
+        ) {
+            appDelegate.intakeManager.sendDailyGoalReachedNotification()
+        }
     }
     
     func getTodaysIntake() {

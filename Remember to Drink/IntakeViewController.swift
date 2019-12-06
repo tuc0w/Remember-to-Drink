@@ -10,11 +10,6 @@ import Cocoa
 import CoreData
 
 class IntakeViewController: NSViewController {
-    @IBOutlet var intakeLabel: NSTextField!
-    
-    @IBOutlet var overallIntakeLabel: NSTextField!
-    
-    @IBOutlet weak var segmentedControl: NSSegmentedControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,37 +17,83 @@ class IntakeViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
-            return
-        }
-        
-        intakeLabel.stringValue = String(appDelegate.intakeManager.intakeAmount)
-        overallIntakeLabel.stringValue = String(appDelegate.intakeManager.overallIntakeAmount)
-        segmentedControl.selectedSegment = appDelegate.intakeManager.selectedInterval
+        self.updateView()
     }
 
+    // notification interval
+    @IBOutlet weak var segmentedControl: NSSegmentedControl!
+    
     @IBAction func scheduleInterval(_ sender: NSSegmentedControl) {
-        let selectedInterval = segmentedControl.indexOfSelectedItem
-        let intakeInterval = Defaults.interval[segmentedControl.indexOfSelectedItem]
-        
-        DataManager().saveConfig(
-            intakeInterval: intakeInterval,
-            selectedInterval: Int64(selectedInterval)
-        )
+        self.saveConfig()
     }
     
+    // daily goal
+    @IBOutlet weak var dailyGoalLabel: NSTextField!
+    
+    @IBOutlet weak var dailyGoalSlider: NSSlider!
+    
+    @IBAction func dailyGoal(_ sender: NSSlider) {
+        let goal = dailyGoalSlider.intValue
+        if (goal > 0) {
+            dailyGoalLabel.stringValue = String(goal)
+        } else {
+            dailyGoalLabel.stringValue = "deaktiviert"
+        }
+        self.saveConfig()
+    }
+    
+    // next notification
+    @IBOutlet weak var nextNotificationLabel: NSTextField!
+    
+    // intake
+    @IBOutlet var intakeLabel: NSTextField!
+    
     @IBAction func increaseIntake(_ sender: NSButton) {
+        DataManager().increaseIntake()
+        self.updateView()
+    }
+    
+    @IBOutlet var overallIntakeLabel: NSTextField!
+    
+    // quit
+    @IBAction func quit(_ sender: NSButton) {
+        NSApplication.shared.terminate(self)
+    }
+    
+    // additional functions
+    func saveConfig() {
+        DataManager().saveConfig(
+            intakeInterval: Defaults.interval[segmentedControl.indexOfSelectedItem],
+            selectedInterval: Int64(segmentedControl.indexOfSelectedItem),
+            dailyGoal: Int64(dailyGoalSlider.intValue)
+        )
+        self.updateView()
+    }
+    
+    func updateView() {
         guard let appDelegate = NSApplication.shared.delegate as? AppDelegate else {
             return
         }
         
-        DataManager().increaseIntake()
+        // notification interval
+        segmentedControl.selectedSegment = appDelegate.intakeManager.selectedInterval
+        
+        // daily goal
+        if (appDelegate.intakeManager.dailyGoal == 0) {
+            dailyGoalLabel.stringValue = String("deaktiviert")
+        } else {
+            dailyGoalLabel.stringValue = String(appDelegate.intakeManager.dailyGoal)
+        }
+        dailyGoalSlider.integerValue = Int(appDelegate.intakeManager.dailyGoal)
+        
+        // next notification
+        let formatter = DateFormatter()
+        formatter.timeStyle = .medium
+        nextNotificationLabel.stringValue = formatter.string(for: appDelegate.intakeManager.nextNotification)!
+        
+        // intake
         intakeLabel.stringValue = String(appDelegate.intakeManager.intakeAmount)
         overallIntakeLabel.stringValue = String(appDelegate.intakeManager.overallIntakeAmount)
-    }
-    
-    @IBAction func quit(_ sender: NSButton) {
-        NSApplication.shared.terminate(self)
     }
 }
 

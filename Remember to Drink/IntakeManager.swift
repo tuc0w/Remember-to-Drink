@@ -11,10 +11,12 @@ import Foundation
 
 class IntakeManager: NSObject, NSUserNotificationCenterDelegate {
     
+    var dailyGoal = Defaults.dailyGoal
     let identifier = "drinkMoreWater-\(Bundle.main.buildVersionNumber ?? "1")"
     var intakeAmount = Defaults.amount
     var intakeInterval = Defaults.interval[Defaults.selectedInterval]
     let intakeNotification = NSUserNotification()
+    var nextNotification = Date(timeIntervalSinceNow: Defaults.interval[Defaults.selectedInterval])
     let notificationCenter = NSUserNotificationCenter.default
     var overallIntakeAmount = Defaults.overall
     var selectedInterval = Defaults.selectedInterval
@@ -25,27 +27,55 @@ class IntakeManager: NSObject, NSUserNotificationCenterDelegate {
     }
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
-        DataManager().increaseIntake()
-        intakeNotification.informativeText = "Heute schon \(intakeAmount)x getrunken"
-        self.schedule(_seconds: intakeInterval)
+        switch (notification.activationType) {
+            case .actionButtonClicked:
+                DataManager().increaseIntake()
+                intakeNotification.informativeText = "Heute schon \(intakeAmount)x getrunken"
+                self.schedule(_seconds: intakeInterval)
+                break
+            case .additionalActionClicked:
+                if (intakeAmount > 0) {
+                    intakeNotification.informativeText = "Heute schon \(intakeAmount)x getrunken"
+                }
+                self.schedule(_seconds: intakeInterval)
+                break
+            default:
+                break
+        }
     }
     
     func createNotification() {
         intakeNotification.identifier = identifier
         intakeNotification.title = "Remember to Drink"
-        intakeNotification.subtitle = "Es ist an der Zeit etwas zu trinken!"
+        intakeNotification.subtitle = "Zeit etwas zu trinken!"
         if (intakeAmount == 0) {
-            intakeNotification.informativeText = "Du hast heute noch nichts getrunken"
+            intakeNotification.informativeText = "Noch nichts getrunken"
         } else {
-            intakeNotification.informativeText = "Heute schon \(intakeAmount)x getrunken"
+            intakeNotification.informativeText = "\(intakeAmount)x getrunken"
         }
         intakeNotification.soundName = NSUserNotificationDefaultSoundName
         intakeNotification.hasActionButton = true
         intakeNotification.actionButtonTitle = "Ich habe getrunken"
+        intakeNotification.otherButtonTitle = "Später"
+    }
+    
+    func sendDailyGoalReachedNotification() {
+        let dailyGoalReachedNotification = NSUserNotification()
+        dailyGoalReachedNotification.identifier = "daily-goal-reached"
+        dailyGoalReachedNotification.title = "Remember to Drink"
+        dailyGoalReachedNotification.subtitle = "Ziel erreicht!"
+        dailyGoalReachedNotification.informativeText = "\(intakeAmount)x getrunken"
+        dailyGoalReachedNotification.soundName = NSUserNotificationDefaultSoundName
+        dailyGoalReachedNotification.hasActionButton = false
+        
+        notificationCenter.deliver(dailyGoalReachedNotification)
     }
     
     func schedule(_seconds: Double) {
-        intakeNotification.deliveryDate = Date(timeIntervalSinceNow: _seconds)
+        let date = Date(timeIntervalSinceNow: _seconds)
+        
+        intakeNotification.deliveryDate = date
+        nextNotification = date
         notificationCenter.scheduleNotification(intakeNotification)
     }
     
