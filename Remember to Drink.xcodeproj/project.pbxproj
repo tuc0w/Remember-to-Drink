@@ -7,22 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9666656B239AC94A00DA77AD /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9666656A239AC94A00DA77AD /* DataManager.swift */; };
 		96807DA0239AB37300949FE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807D9F239AB37300949FE2 /* AppDelegate.swift */; };
-		96807DA2239AB37300949FE2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807DA1239AB37300949FE2 /* ViewController.swift */; };
 		96807DA5239AB37300949FE2 /* Remember_to_Drink.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96807DA3239AB37300949FE2 /* Remember_to_Drink.xcdatamodeld */; };
 		96807DA7239AB37400949FE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96807DA6239AB37400949FE2 /* Assets.xcassets */; };
 		96807DAA239AB37400949FE2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96807DA8239AB37400949FE2 /* Main.storyboard */; };
+		96807DB7239AB52A00949FE2 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807DB2239AB52900949FE2 /* EventMonitor.swift */; };
+		96807DB8239AB52A00949FE2 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807DB3239AB52900949FE2 /* Bundle.swift */; };
+		96807DB9239AB52A00949FE2 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807DB4239AB52900949FE2 /* Defaults.swift */; };
+		96807DBA239AB52A00949FE2 /* IntakeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807DB5239AB52900949FE2 /* IntakeViewController.swift */; };
+		96807DBB239AB52A00949FE2 /* IntakeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96807DB6239AB52A00949FE2 /* IntakeManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9666656A239AC94A00DA77AD /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		96807D9C239AB37300949FE2 /* Remember to Drink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Remember to Drink.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		96807D9F239AB37300949FE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		96807DA1239AB37300949FE2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96807DA4239AB37300949FE2 /* Remember_to_Drink.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Remember_to_Drink.xcdatamodel; sourceTree = "<group>"; };
 		96807DA6239AB37400949FE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96807DA9239AB37400949FE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		96807DAB239AB37400949FE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96807DAC239AB37400949FE2 /* Remember_to_Drink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Remember_to_Drink.entitlements; sourceTree = "<group>"; };
+		96807DB2239AB52900949FE2 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		96807DB3239AB52900949FE2 /* Bundle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
+		96807DB4239AB52900949FE2 /* Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		96807DB5239AB52900949FE2 /* IntakeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeViewController.swift; sourceTree = "<group>"; };
+		96807DB6239AB52A00949FE2 /* IntakeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntakeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,10 +66,15 @@
 			isa = PBXGroup;
 			children = (
 				96807D9F239AB37300949FE2 /* AppDelegate.swift */,
-				96807DA1239AB37300949FE2 /* ViewController.swift */,
 				96807DA6239AB37400949FE2 /* Assets.xcassets */,
-				96807DA8239AB37400949FE2 /* Main.storyboard */,
+				96807DB3239AB52900949FE2 /* Bundle.swift */,
+				9666656A239AC94A00DA77AD /* DataManager.swift */,
+				96807DB4239AB52900949FE2 /* Defaults.swift */,
+				96807DB2239AB52900949FE2 /* EventMonitor.swift */,
 				96807DAB239AB37400949FE2 /* Info.plist */,
+				96807DB6239AB52A00949FE2 /* IntakeManager.swift */,
+				96807DB5239AB52900949FE2 /* IntakeViewController.swift */,
+				96807DA8239AB37400949FE2 /* Main.storyboard */,
 				96807DAC239AB37400949FE2 /* Remember_to_Drink.entitlements */,
 				96807DA3239AB37300949FE2 /* Remember_to_Drink.xcdatamodeld */,
 			);
@@ -136,9 +151,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96807DA2239AB37300949FE2 /* ViewController.swift in Sources */,
+				96807DB9239AB52A00949FE2 /* Defaults.swift in Sources */,
 				96807DA0239AB37300949FE2 /* AppDelegate.swift in Sources */,
 				96807DA5239AB37300949FE2 /* Remember_to_Drink.xcdatamodeld in Sources */,
+				96807DB8239AB52A00949FE2 /* Bundle.swift in Sources */,
+				96807DBB239AB52A00949FE2 /* IntakeManager.swift in Sources */,
+				96807DB7239AB52A00949FE2 /* EventMonitor.swift in Sources */,
+				9666656B239AC94A00DA77AD /* DataManager.swift in Sources */,
+				96807DBA239AB52A00949FE2 /* IntakeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,13 +296,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Remember to Drink/Remember_to_Drink.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = G53ZL4Y7EJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Remember to Drink/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andreasbehrend.Remember-to-Drink";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -296,13 +317,14 @@
 				CODE_SIGN_ENTITLEMENTS = "Remember to Drink/Remember_to_Drink.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = G53ZL4Y7EJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "Remember to Drink/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.andreasbehrend.Remember-to-Drink";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
