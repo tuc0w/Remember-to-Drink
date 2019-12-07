@@ -689,6 +689,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="209" height="354"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCL-LB-DbH">
+                                <rect key="frame" x="14" y="13" width="181" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BcM-YY-Eq9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="quit:" target="XfG-lQ-9wD" id="Yhr-zZ-oZl"/>
+                                </connections>
+                            </button>
                             <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mej-P6-4ap">
                                 <rect key="frame" x="18" y="290" width="173" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -732,17 +743,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="liO-c1-6eD">
-                                <rect key="frame" x="14" y="102" width="181" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SjM-I7-dEc">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="increaseIntake:" target="XfG-lQ-9wD" id="qac-Li-k3Y"/>
-                                </connections>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uE-oa-Pwa">
                                 <rect key="frame" x="18" y="74" width="88" height="16"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -772,7 +772,7 @@
                             <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Yj-22-suP">
                                 <rect key="frame" x="18" y="223" width="173" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <sliderCell key="cell" alignment="left" maxValue="24" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="25" allowsTickMarkValuesOnly="YES" sliderType="linear" id="cFw-6y-9Yy"/>
+                                <sliderCell key="cell" continuous="YES" alignment="left" maxValue="24" doubleValue="6" tickMarkPosition="above" numberOfTickMarks="25" allowsTickMarkValuesOnly="YES" sliderType="linear" id="cFw-6y-9Yy"/>
                                 <connections>
                                     <action selector="dailyGoal:" target="XfG-lQ-9wD" id="Oer-Vy-vN6"/>
                                 </connections>
@@ -813,15 +813,15 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jCL-LB-DbH">
-                                <rect key="frame" x="14" y="13" width="181" height="32"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="liO-c1-6eD">
+                                <rect key="frame" x="14" y="102" width="181" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BcM-YY-Eq9">
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SjM-I7-dEc">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="quit:" target="XfG-lQ-9wD" id="Yhr-zZ-oZl"/>
+                                    <action selector="increaseIntake:" target="XfG-lQ-9wD" id="qac-Li-k3Y"/>
                                 </connections>
                             </button>
                         </subviews>

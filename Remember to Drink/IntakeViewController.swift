@@ -33,13 +33,20 @@ class IntakeViewController: NSViewController {
     @IBOutlet weak var dailyGoalSlider: NSSlider!
     
     @IBAction func dailyGoal(_ sender: NSSlider) {
+        let event = NSApplication.shared.currentEvent
+            
+        
         let goal = dailyGoalSlider.intValue
         if (goal > 0) {
             dailyGoalLabel.stringValue = String(goal)
         } else {
             dailyGoalLabel.stringValue = "deaktiviert"
         }
-        self.saveConfig()
+        
+        if event?.type == NSEvent.EventType.leftMouseUp {
+            self.saveConfig()
+        }
+        
     }
     
     // next notification

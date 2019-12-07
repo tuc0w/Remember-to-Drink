@@ -11,6 +11,7 @@ import Foundation
 struct Defaults {
     static var amount = 0
     static var dailyGoal = 0
+    static var dailyGoalDelay = 12.0
     static var interval = [60.0, 1800.0, 2700.0, 3600.0]
     static var overall = 0
     static var selectedInterval = 0;

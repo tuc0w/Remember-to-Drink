@@ -68,7 +68,9 @@ class IntakeManager: NSObject, NSUserNotificationCenterDelegate {
         dailyGoalReachedNotification.soundName = NSUserNotificationDefaultSoundName
         dailyGoalReachedNotification.hasActionButton = false
         
-        notificationCenter.deliver(dailyGoalReachedNotification)
+        let deliveryDate = Date(timeIntervalSinceNow: Defaults.dailyGoalDelay)
+        dailyGoalReachedNotification.deliveryDate = deliveryDate
+        notificationCenter.scheduleNotification(dailyGoalReachedNotification)
     }
     
     func schedule(_seconds: Double) {
