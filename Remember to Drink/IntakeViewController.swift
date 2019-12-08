@@ -23,30 +23,22 @@ class IntakeViewController: NSViewController {
     // notification interval
     @IBOutlet weak var segmentedControl: NSSegmentedControl!
     
-    @IBAction func scheduleInterval(_ sender: NSSegmentedControl) {
-        self.saveConfig()
-    }
-    
     // daily goal
     @IBOutlet weak var dailyGoalLabel: NSTextField!
     
-    @IBOutlet weak var dailyGoalSlider: NSSlider!
+    @IBOutlet weak var dailyGoalStepper: NSStepper!
     
-    @IBAction func dailyGoal(_ sender: NSSlider) {
-        let event = NSApplication.shared.currentEvent
-            
-        
-        let goal = dailyGoalSlider.intValue
+    @IBAction func dailyGoal(_ sender: NSStepper) {
+        let goal = dailyGoalStepper.intValue
         if (goal > 0) {
             dailyGoalLabel.stringValue = String(goal)
         } else {
-            dailyGoalLabel.stringValue = "deaktiviert"
+            dailyGoalLabel.stringValue = "---"
         }
-        
-        if event?.type == NSEvent.EventType.leftMouseUp {
-            self.saveConfig()
-        }
-        
+    }
+    
+    @IBAction func save(_ sender: NSButton) {
+        self.saveConfig()
     }
     
     // next notification
@@ -72,7 +64,7 @@ class IntakeViewController: NSViewController {
         DataManager().saveConfig(
             intakeInterval: Defaults.interval[segmentedControl.indexOfSelectedItem],
             selectedInterval: Int64(segmentedControl.indexOfSelectedItem),
-            dailyGoal: Int64(dailyGoalSlider.intValue)
+            dailyGoal: Int64(dailyGoalStepper.intValue)
         )
         self.updateView()
     }
@@ -87,11 +79,11 @@ class IntakeViewController: NSViewController {
         
         // daily goal
         if (appDelegate.intakeManager.dailyGoal == 0) {
-            dailyGoalLabel.stringValue = String("deaktiviert")
+            dailyGoalLabel.stringValue = String("---")
         } else {
             dailyGoalLabel.stringValue = String(appDelegate.intakeManager.dailyGoal)
         }
-        dailyGoalSlider.integerValue = Int(appDelegate.intakeManager.dailyGoal)
+        dailyGoalStepper.integerValue = Int(appDelegate.intakeManager.dailyGoal)
         
         // next notification
         let formatter = DateFormatter()
